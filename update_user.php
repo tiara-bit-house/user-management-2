@@ -55,7 +55,7 @@
             <input type="hidden" name="oldImageUrl" value="<?php echo $image_url ?>">
             <div class="mb-3">
                 <label for="image" class="form-label">Photo Profile</label>
-                <input onchange="prevImages()" required name="image" type="file" class="form-control" id="image" aria-describedby="emailHelp">
+                <input onchange="prevImages()" name="image" type="file" class="form-control" id="image" aria-describedby="emailHelp">
             </div>
             <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label">Name</label>
