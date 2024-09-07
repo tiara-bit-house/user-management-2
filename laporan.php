@@ -1,3 +1,10 @@
+<?php
+session_start();
+if (!$_SESSION['is_admin']):
+    header('Location: dashboard.php?message="unauthorized action"');
+    exit();
+endif ?>
+
 <div style="margin: auto;">
     <h1 style="text-align: center;">Tiara Dewata</h1>
     <p style="text-align: center;">Jl. Alamat tiara</p>

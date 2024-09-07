@@ -36,11 +36,14 @@
     }
 
     ?>
-    <div class="d-flex justify-content-center">
-        <a href="laporan.php" class="mx-auto">
-            Print Laporan User
-        </a>
-    </div>
+    <?php if ($_SESSION['is_admin']): ?>
+        <div class="d-flex justify-content-center">
+            <a href="laporan.php" class="mx-auto">
+                Print Laporan User
+            </a>
+        </div>
+    <?php endif ?>
+
     <table class="table w-50 mx-auto">
         <thead>
             <tr>
