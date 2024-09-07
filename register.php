@@ -12,7 +12,12 @@
 <body>
     <?php require_once 'navbar.php' ?>
     <div class="mx-auto w-25 mt-5">
-        <form action="app/proses_register.php" method="post">
+        <form action="app/proses_register.php" method="post" enctype="multipart/form-data">
+            <img id="prevImage" width="500">
+            <div class="mb-3">
+                <label for="image" class="form-label">Photo Profile</label>
+                <input onchange="prevImages()" required name="image" type="file" class="form-control" id="image" aria-describedby="emailHelp">
+            </div>
             <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label">Name</label>
                 <input required minlength="4" name="name" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
@@ -29,7 +34,7 @@
             <button type="submit" class="btn btn-primary">Register</button>
         </form>
     </div>
-
+    <script src="js/script.js"></script>
 </body>
 
 </html>

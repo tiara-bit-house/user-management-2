@@ -24,10 +24,10 @@
     }
 
     $user_id = $_GET['user_id'];
-    $stmt = $conn->prepare("SELECT user_id, name, email, point FROM users WHERE user_id = ?");
+    $stmt = $conn->prepare("SELECT user_id, name, email, point, image_url FROM users WHERE user_id = ?");
     $stmt->bind_param('i', $user_id);
     $stmt->execute();
-    $stmt->bind_result($user_id, $name, $email, $point);
+    $stmt->bind_result($user_id, $name, $email, $point, $image_url);
     $stmt->fetch();
     ?>
     <?php
@@ -49,8 +49,14 @@
 
     ?>
     <div class="mx-auto w-25 mt-5">
-        <form action="app/proses_update.php" method="post">
+        <form action="app/proses_update.php" method="post" enctype="multipart/form-data">
             <input type="hidden" name="user_id" value="<?php echo $user_id ?>">
+            <img id="prevImage" src="<?php echo $image_url ? "app/$image_url" : "https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png" ?>" width="500">
+            <input type="hidden" name="oldImageUrl" value="<?php echo $image_url ?>">
+            <div class="mb-3">
+                <label for="image" class="form-label">Photo Profile</label>
+                <input onchange="prevImages()" required name="image" type="file" class="form-control" id="image" aria-describedby="emailHelp">
+            </div>
             <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label">Name</label>
                 <input required value="<?php echo $name ?>" minlength="4" name="name" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
@@ -67,6 +73,7 @@
             <button type="submit" class="btn btn-primary">Update</button>
         </form>
     </div>
+    <script src="js/script.js"></script>
 </body>
 
 </html>

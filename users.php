@@ -36,10 +36,16 @@
     }
 
     ?>
+    <div class="d-flex justify-content-center">
+        <a href="laporan.php" class="mx-auto">
+            Print Laporan User
+        </a>
+    </div>
     <table class="table w-50 mx-auto">
         <thead>
             <tr>
                 <th scope="col">#</th>
+                <th scope="col">Profile</th>
                 <th scope="col">Name</th>
                 <th scope="col">Email</th>
                 <th scope="col">Point</th>
@@ -55,6 +61,7 @@
             ?>
                 <tr>
                     <th scope="row"><?php echo $index ?></th>
+                    <td><img src="app/<?php echo $user->image_url ?>" alt="Photo profile" width="150"></td>
                     <td><?php echo $user->name ?></td>
                     <td><?php echo $user->email ?></td>
                     <td><?php echo ($user->point) ?? 'Tidak ada point' ?></td>

@@ -18,7 +18,11 @@
         exit();
     } ?>
 
-    <h1 class="text-center">Hallo, <?php echo $_SESSION['name'] ?></h1>
+    <h1 class="text-center">
+        Hallo, <?php echo $_SESSION['name'] ?>
+        <p>Login sebagai : <?php echo $_SESSION['is_admin'] ? 'Admin' : 'Member' ?></p>
+    </h1>
+
 
 </body>
 
