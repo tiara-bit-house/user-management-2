@@ -1,11 +1,21 @@
 <?php
 
 require_once 'database.php';
+session_start();
 
-if (isset($_POST)) {
+if (isset($_POST) && hash_equals($_SESSION['csrf_token'], $_POST['csrf_token'])) {
+    $_SESSION['csrf_token'] =  bin2hex(random_bytes(32));
+
     $name = $_POST['name'];
-    $email = $_POST['email'];
-    $password = $_POST['password'];
+    $email = htmlspecialchars($_POST['email'], ENT_QUOTES, 'utf-8');
+    $password = htmlspecialchars($_POST['password'], ENT_QUOTES, 'utf-8');
+
+    $email = filter_var($email, FILTER_SANITIZE_EMAIL);
+
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        header('Location: ../register.php?message="Email tidak valid"');
+        exit();
+    }
 
     $password = password_hash($password, PASSWORD_BCRYPT);
 
@@ -35,4 +45,7 @@ if (isset($_POST)) {
     } else {
         header('Location: ../register.php?message="berhasil register"');
     }
+} else {
+    header('Location: ../register.php?message="CSRF token invalid"');
+    exit();
 }

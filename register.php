@@ -7,13 +7,22 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <title>Tiara Dewata | BIT House</title>
+
 </head>
 
 <body>
     <?php require_once 'navbar.php' ?>
+    <?php
+    if (isset($_GET)) {
+        $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+    }
+    ?>
     <div class="mx-auto w-25 mt-5">
         <form action="app/proses_register.php" method="post" enctype="multipart/form-data">
             <img id="prevImage" width="500">
+
+            <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token'] ?>">
+
             <div class="mb-3">
                 <label for="image" class="form-label">Photo Profile</label>
                 <input onchange="prevImages()" required name="image" type="file" class="form-control" id="image" aria-describedby="emailHelp">

@@ -19,7 +19,7 @@
     } ?>
 
     <h1 class="text-center">
-        Hallo, <?php echo $_SESSION['name'] ?>
+        Hallo, <?php echo htmlspecialchars($_SESSION['name'], ENT_QUOTES, 'utf-8') ?>
         <p>Login sebagai : <?php echo $_SESSION['is_admin'] ? 'Admin' : 'Member' ?></p>
     </h1>
 
